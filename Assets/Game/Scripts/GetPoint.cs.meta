@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5da2505828b6d874bb66add6bc1bc343
+timeCreated: 1543972419
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Point: {fileID: 1586512026394654, guid: a6890dd6a35aa3042876bf40c9f76e83, type: 2}
+  - Ad_lib: {fileID: 1850720261930910, guid: 0e07d371f3388de42853e389f6e7e0b5, type: 2}
+  - Flypoint: {fileID: 1248562880116736, guid: 25792db2bce877744bf7d5e6a79ddfa4, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
