@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class GetPoint : MonoBehaviour {
     public int m_pointNum;
-    public GameObject prefabs;
+    public int ad_libNum;
+    public int m_flypointNum;
+
+    public GameObject Point;
+    public GameObject Ad_lib;
+    public GameObject Flypoint;
+    GameObject flypoint;
+
     float _timer;
     int _timernum=0;
     bool cancreat=true;
-    public GameObject _flypoint1;
 
     // Use this for initialization
 	void Start ()
     {
         CreatPoint(m_pointNum);
+        CreatAdLib(ad_libNum);
     }
 
     // Update is called once per frame
@@ -21,30 +28,19 @@ public class GetPoint : MonoBehaviour {
     {
         Timer();
         Debug.Log(_timernum);
-
-
-        if (_timernum== 5&&cancreat)//Creat point
-        {
-            CreatFlyPoint();
-            cancreat = false;
-        }
-
-
-        if (_timernum>=7)//Fly point move
-        {
-            _flypoint1.transform.localPosition = Vector3.MoveTowards(_flypoint1.transform.localPosition, new Vector3(0,0,110), 20f*Time.deltaTime);
-        }
+        FlyPointMove(_timernum);
 	}
 
     /// <summary>
     /// Creat point
     /// </summary>
     /// <param name="pointNum"></param>
-    public void CreatPoint(int pointNum)
+    public void CreatPoint(int m_pointNum)
     {
-        for(int _point = 0; _point<=pointNum-1; _point++)
+        for(int _pointNum = 0; _pointNum<=m_pointNum-1; _pointNum++)
         {
-            Instantiate(prefabs, new Vector3(0,0,20*_point), Quaternion.identity);
+            GameObject point= Instantiate(Point, new Vector3(0,0,20*_pointNum), Quaternion.identity);
+            point.name = "Point" + (_pointNum+1);
         }
     }
 
@@ -54,9 +50,40 @@ public class GetPoint : MonoBehaviour {
     /// <param name="_flynum"></param>
     public void CreatFlyPoint()
     {
-        _flypoint1= Instantiate(prefabs, new Vector3(20, 0, 110), Quaternion.identity);
-        _flypoint1.name = "Flypoint1";
-        Timer();
+        flypoint= Instantiate(Flypoint, new Vector3(20, 0, 50), Quaternion.identity);
+        flypoint.name = "Flypoint" + 1;
+    }
+
+    /// <summary>
+    /// Fly point move
+    /// </summary>
+    /// <param name="_timernum"></param>
+    public void FlyPointMove(int _timernum)
+    {
+        if (_timernum == 3 && cancreat)//Creat fly point
+        {
+            CreatFlyPoint();
+            cancreat = false;
+        }
+        if (_timernum >= 4 && _timernum <= 15)//Fly point move
+        {
+            float step = 20f * Time.deltaTime;
+            Debug.Log("Come on!!!!");
+            flypoint.transform.localPosition = Vector3.MoveTowards(flypoint.transform.localPosition, new Vector3(0, 0, 50), step);
+            Debug.Log("I'm crazy!!!");
+        }
+    }
+
+    /// <summary>
+    /// Creat ad-lib
+    /// </summary>
+    public void CreatAdLib(int ad_lib)
+    {
+        for (int _adlib = 1; _adlib <= ad_lib - 1; _adlib++)
+        {
+            GameObject adlib =Instantiate(Ad_lib, new Vector3(0, 0, 12*_adlib), Quaternion.identity);
+            adlib.name = "Ad-lib" + (_adlib + 1);
+        }
     }
 
     /// <summary>
